@@ -3,8 +3,6 @@ package org.example;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-
 public class Product {
 
     @Getter
@@ -37,10 +35,10 @@ public class Product {
         this.category = cat;
     }
 
-    public void sconto(Product p, double scontopc) {
-        double temprice = p.getPrice();
+    public void sconto(double scontopc) {
+        double temprice = this.getPrice();
         double pricediscount = temprice - (temprice * scontopc);
-        p.setPrice(pricediscount);
+        this.setPrice(pricediscount);
     }
 
     @Override

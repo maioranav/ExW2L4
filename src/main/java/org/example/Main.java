@@ -1,6 +1,10 @@
 package org.example;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -17,22 +21,13 @@ public class Main {
         customers.add(new Customer("Gustavo Lapatong", 1));
 
         //CREO I PRODOTTI
-
-        /* 0 */
         products.add(new Product("Il soldato", "Books", 129.00d));
-        /* 1 */
         products.add(new Product("Ryan Jets", "Books", 101.00d));
-        /* 2 */
         products.add(new Product("Orsacchiotto", "Baby", 12.90d));
-        /* 3 */
         products.add(new Product("La papera di gomma", "Books", 97.90d));
-        /* 4 */
         products.add(new Product("Bambola", "Boys", 25.99d));
-        /* 5 */
         products.add(new Product("Macchinina", "Girls", 32.90d));
-        /* 6 */
         products.add(new Product("Pupazzo", "Baby", 84.70d));
-        /* 7 */
         products.add(new Product("Mangime per cani", "Boys", 97.45d));
 
         //CREO GLI ORDINI
@@ -44,7 +39,7 @@ public class Main {
         //AGGIUNGO I PRODOTTI AGLI ORDINI
         orders.get(0).addProduct(products.get(1));
         orders.get(0).addProduct(products.get(3));
-        orders.get(0).addProduct(products.get(2));
+        orders.get(0).addProduct(products.get(7));
         orders.get(0).addProduct(products.get(0));
         orders.get(1).addProduct(products.get(4));
         orders.get(1).addProduct(products.get(6));
@@ -60,7 +55,25 @@ public class Main {
         orders.get(3).addProduct(products.get(0));
 
         //INIZIO ESERCIZI SU JAVA STREAM
+        System.out.println("\n=> ESERCIZIO 1 ");
+        List<Product> ex1 = products.stream().filter(n -> n.getCategory().equals("Books")).filter(n -> n.getPrice() > 100d).toList();
+        System.out.println(ex1.toString());
 
+        System.out.println("\n=> ESERCIZIO 2 ");
+        List<Order> ex2 = orders.stream().filter(n -> n.getProducts().stream().anyMatch(el -> el.getCategory().equals("Baby"))).toList();
+        System.out.println(ex2.toString());
+
+        System.out.println("\n=> ESERCIZIO 3 - PRIMA ");
+        List<Product> ex3 = products.stream().filter(n -> n.getCategory().equals("Boys")).toList();
+        System.out.println(ex3.toString());
+        System.out.println("\n=> ESERCIZIO 3 - DOPO ");
+        products.stream().filter(n -> n.getCategory().equals("Boys")).forEach(m -> m.sconto(0.10d));
+        System.out.println(ex3.toString());
+
+        System.out.println("\n=> ESERCIZIO 4 ");
+        List<Product> ex4 = new ArrayList<>();
+        orders.stream().filter(n -> n.getCustomer().getTier() == 2).forEach(el -> ex4.addAll(el.getProducts()));
+        System.out.println(ex4.toString());
 
     }
 }
