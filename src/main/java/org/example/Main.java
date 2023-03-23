@@ -55,7 +55,8 @@ public class Main {
         orders.get(3).addProduct(products.get(2));
         orders.get(3).addProduct(products.get(0));
 
-        //INIZIO ESERCIZI SU JAVA STREAM
+        //INIZIO ESERCIZI SU JAVA STREAM <---
+
         System.out.println("\n=> ESERCIZIO 1 ");
         List<Product> ex1 = products.stream().filter(n -> n.getCategory().equals("Books")).filter(n -> n.getPrice() > 100d).toList();
         System.out.println(ex1.toString());
