@@ -18,6 +18,7 @@ public class Order {
     @Setter
     private String status = "In elaborazione";
     @Getter
+    @Setter
     private LocalDate orderDate;
     @Getter
     private LocalDate deliveryDate;

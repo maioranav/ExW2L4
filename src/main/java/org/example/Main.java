@@ -34,6 +34,7 @@ public class Main {
         orders.add(new Order(customers.get(0)));    //0
         orders.add(new Order(customers.get(1)));    //1
         orders.add(new Order(customers.get(2)));    //2
+        orders.get(2).setOrderDate(LocalDate.now().plusDays(4));
         orders.add(new Order(customers.get(3)));    //3
 
         //AGGIUNGO I PRODOTTI AGLI ORDINI
@@ -72,7 +73,7 @@ public class Main {
 
         System.out.println("\n=> ESERCIZIO 4 ");
         List<Product> ex4 = new ArrayList<>();
-        orders.stream().filter(n -> n.getCustomer().getTier() == 2).forEach(el -> ex4.addAll(el.getProducts()));
+        orders.stream().filter(n -> n.getCustomer().getTier() == 2 && LocalDate.now().isBefore(n.getOrderDate())).forEach(el -> ex4.addAll(el.getProducts()));
         System.out.println(ex4.toString());
 
     }
