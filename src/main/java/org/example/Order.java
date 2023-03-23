@@ -56,7 +56,6 @@ public class Order {
 
     public void addProduct(Product p) {
         this.products.add(p);
-        System.out.println("Ho aggiunto il prodotto all'ordine");
     }
 
 }
