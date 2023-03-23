@@ -39,8 +39,10 @@ public class Order {
         this.customer = cust;
     }
 
-    public Order(Customer cust, String status) {
+    public Order(Customer cust, LocalDate date) {
         this(cust);
+        this.orderDate = date;
+        this.deliveryDate = date.plusDays(3);
         this.status = status;
     }
 
